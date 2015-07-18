@@ -37,19 +37,19 @@ function showQuestion(question) {
     var textNode = document.createTextNode(question.text);
     var divSurveyCard = document.createElement('div');
     var divQuestion = document.createElement('div');
-    divQuestion.class = "divQuestion";
+    divQuestion.className = "divQuestion";
     p.appendChild(textNode);
     divQuestion.appendChild(p);
     divQuestion.style.display = 'none';
     divSurveyCard.appendChild(divQuestion);
-    divSurveyCard.class = "divSurveyCard"
+    divSurveyCard.className = "divSurveyCard";
     container.appendChild(divSurveyCard);
 
     showNextItem = false;
 
     // Display options
     var divOptions = document.createElement('div');
-    divOptions.class = "divOptions";
+    divOptions.className = "divOptions";
     divSurveyCard.appendChild(divOptions);
     for (var i=0;i<question.options.length;i++) {
         var option = question.options[i];

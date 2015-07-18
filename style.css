@@ -13,6 +13,14 @@ button {
     margin-right: 30px;
 }
 
+.divQuestion {
+    height: 50%;
+}
+
+.divOptions {
+    height: 50%;
+}
+
 @media screen and (max-width: 1000px) {
     #container {
         margin: 0 auto;
