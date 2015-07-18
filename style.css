@@ -1,0 +1,33 @@
+#container {
+    margin: 0 auto;
+    border: 5px solid black;
+    padding: 10px;
+    width: 1000px;
+    height: 500px;
+    font-family: "LiHei Pro", "Microsoft YaHei", sans-serif;
+    font-size: 4em;
+}
+
+button {
+    font-size: 1em;
+    margin-right: 30px;
+}
+
+@media screen and (max-width: 1000px) {
+    #container {
+        margin: 0 auto;
+        border: 1px dashed black;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        font-family: "LiHei Pro", "Microsoft YaHei", sans-serif;
+        font-size: 5em;
+    }
+
+    button {
+        font-size: 1em;
+        margin-right: 30px;
+        display: block;
+    }
+
+}
