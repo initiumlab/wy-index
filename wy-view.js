@@ -3,9 +3,10 @@
 // Serve the files
 var express = require('express');
 var app = express();
-app.use('/', express.static(__dirname));
+var fs = require('fs');
 
 // Monitor post requests from clients
+app.use('/', express.static(__dirname));
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -16,6 +17,8 @@ app.post('/', function (req, res) {
     console.log(req.body.time);
     console.log(req.ip);
     console.log(req.body.userChoices);
+    var line = '\n' + req.body.time.toString() + '|' + req.ip.toString() + '|' + JSON.stringify(req.body.userChoices);
+    fs.appendFile('/Users/andy/wy-data/data.csv', line, function (err) {console.log(err)});
 });
 
 app.listen(3000, function () {
