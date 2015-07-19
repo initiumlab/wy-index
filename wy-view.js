@@ -18,7 +18,7 @@ app.post('/', function (req, res) {
     console.log(req.ip);
     console.log(req.body.userChoices);
     var line = '\n' + req.body.time.toString() + '|' + req.ip.toString() + '|' + JSON.stringify(req.body.userChoices);
-    fs.appendFile('/Users/andy/wy-data/data.csv', line, function (err) {console.log(err)});
+    fs.appendFile('/home/andy/wy-data/data.csv', line, function (err) {console.log(err)});
 });
 
 app.listen(3000, function () {

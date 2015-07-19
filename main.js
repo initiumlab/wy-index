@@ -5,7 +5,7 @@ var container = document.getElementById("container");
 
 var userChoices = [];
 
-var DEBUG = true;
+var DEBUG = false;
 
 function fadeOut(element) {
     var op = 1;  // initial opacity
@@ -100,7 +100,7 @@ function normalize(index) {
 
 function postToServer(choices) {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000', true);
+    xhr.open('POST', 'http://104.131.213.77:3000', true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
