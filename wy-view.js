@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 app.post('/', function (req, res) {
     'use strict';
-    console.log(req);
-    console.log('request received');
+    console.log(req.body.time);
+    console.log(req.ip);
 });
 
 app.listen(3000, function () {

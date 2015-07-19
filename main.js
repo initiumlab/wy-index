@@ -101,8 +101,13 @@ function normalize(index) {
 function postToServer(choices) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:3000', true);
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    xhr.send('"name1":"value1"');
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            alert(xhr.responseText);
+        }
+    };
+    xhr.send(JSON.stringify({time:Date.now()}));
     xhr.onloadend = function () {};
 }
 
