@@ -107,7 +107,10 @@ function postToServer(choices) {
             alert(xhr.responseText);
         }
     };
-    xhr.send(JSON.stringify({time:Date.now()}));
+    xhr.send(JSON.stringify({
+        time:Date.now(),
+        userChoices:choices
+    }));
     xhr.onloadend = function () {};
 }
 

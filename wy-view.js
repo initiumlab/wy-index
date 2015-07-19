@@ -15,6 +15,7 @@ app.post('/', function (req, res) {
     'use strict';
     console.log(req.body.time);
     console.log(req.ip);
+    console.log(req.body.userChoices);
 });
 
 app.listen(3000, function () {
