@@ -5,6 +5,8 @@ var container = document.getElementById("container");
 
 var userChoices = [];
 
+var DEBUG = true;
+
 function fadeOut(element) {
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
@@ -97,7 +99,11 @@ function normalize(index) {
 }
 
 function postToServer(choices) {
-    //TODO
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000', true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.send('"name1":"value1"');
+    xhr.onloadend = function () {};
 }
 
 function checkAndShowNextItem() {
@@ -120,7 +126,11 @@ function checkAndShowNextItem() {
 
 
 // determine the questions orders.
-survey = shuffle(survey).concat(additionalQuestions);
+if (!DEBUG) {
+    survey = shuffle(survey).concat(additionalQuestions);
+} else {
+    survey = survey.slice(0, 3);
+}
 
 // Display welcome page
 var divWelcome = document.createElement('div');
