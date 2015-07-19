@@ -3,6 +3,8 @@ var nextQuestion = 0;
 var showNextItem;
 var container = document.getElementById("container");
 
+var userChoices = [];
+
 function fadeOut(element) {
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
@@ -30,6 +32,21 @@ function fadeIn(element) {
     }, 10);
 }
 
+function shuffle(array) {
+    var counter = array.length, temp, index;
+
+    while (counter > 0) {
+        index = Math.floor(Math.random() * counter);
+        counter--;
+
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+    }
+
+    return array;
+}
+
 function showQuestion(question) {
 
     // Display question text
@@ -54,19 +71,21 @@ function showQuestion(question) {
     for (var i=0;i<question.options.length;i++) {
         var option = question.options[i];
         var optionText = option[0];
-        var optionWeight = option[1];
 
         var button = document.createElement('button');
         textNode = document.createTextNode(optionText);
         button.appendChild(textNode);
-        button.value = optionWeight;
+        button.question = question;
+        button.option = option;
         divOptions.appendChild(button);
 
         button.addEventListener("click", function(event){
-            wyIndex += parseInt(event.target.value);
+            wyIndex += parseInt(event.target.option[1]);
             fadeOut(event.target.parentNode.parentNode);
             nextQuestion++;
             showNextItem = true;
+            userChoices.push([event.target.question.serial,
+                              event.target.option[0]])
         });
     }
     fadeIn(divQuestion);
@@ -75,6 +94,10 @@ function showQuestion(question) {
 function normalize(index) {
     // Normalize index to a 100-scale.
     return Math.round(index / 75 * 100);
+}
+
+function postToServer(choices) {
+    //TODO
 }
 
 function checkAndShowNextItem() {
@@ -90,29 +113,11 @@ function checkAndShowNextItem() {
             divIndex.appendChild(textNode);
             container.appendChild(divIndex);
             fadeIn(divIndex);
+            postToServer(userChoices);
         }
     }
 }
 
-function shuffle(array) {
-    var counter = array.length, temp, index;
-
-    // While there are elements in the array
-    while (counter > 0) {
-        // Pick a random index
-        index = Math.floor(Math.random() * counter);
-
-        // Decrease counter by 1
-        counter--;
-
-        // And swap the last element with it
-        temp = array[counter];
-        array[counter] = array[index];
-        array[index] = temp;
-    }
-
-    return array;
-}
 
 // determine the questions orders.
 survey = shuffle(survey).concat(additionalQuestions);
