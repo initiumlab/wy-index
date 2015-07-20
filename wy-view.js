@@ -7,11 +7,12 @@ var fs = require('fs');
 var http = require('http');
 
 //Allow CORS
-app_post.all('*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'POST');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
+app_post.all('*', function (req, res, next) {
+    'use strict';
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
 });
 
 // Serve the files

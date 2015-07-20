@@ -1,3 +1,5 @@
+/*jslint browser: true*/
+
 var wyIndex = 0;
 var nextQuestion = 0;
 var showNextItem;
@@ -8,9 +10,10 @@ var userChoices = [];
 var DEBUG = false;
 
 function fadeOut(element) {
+    'use strict';
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
-        if (op <= 0.1){
+        if (op <= 0.1) {
             clearInterval(timer);
             element.style.display = 'none';
         }
@@ -21,6 +24,7 @@ function fadeOut(element) {
 }
 
 function fadeIn(element) {
+    'use strict';
     var op = 0.1;  // initial opacity
     element.style.opacity = 0;
     element.style.display = 'block';
@@ -35,11 +39,12 @@ function fadeIn(element) {
 }
 
 function shuffle(array) {
+    'use strict';
     var counter = array.length, temp, index;
 
     while (counter > 0) {
         index = Math.floor(Math.random() * counter);
-        counter--;
+        counter -= 1;
 
         temp = array[counter];
         array[counter] = array[index];
@@ -50,12 +55,13 @@ function shuffle(array) {
 }
 
 function showQuestion(question) {
+    'use strict';
 
     // Display question text
-    var p = document.createElement('p');
-    var textNode = document.createTextNode(question.text);
-    var divSurveyCard = document.createElement('div');
-    var divQuestion = document.createElement('div');
+    var p = document.createElement('p'),
+        textNode = document.createTextNode(question.text),
+        divSurveyCard = document.createElement('div'),
+        divQuestion = document.createElement('div');
     divQuestion.className = "divQuestion";
     p.appendChild(textNode);
     divQuestion.appendChild(p);
