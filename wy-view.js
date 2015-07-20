@@ -1,18 +1,27 @@
 /*jslint node: true */
 
-// Serve the files
 var express = require('express');
 var app = express();
+var app_post = express();
 var fs = require('fs');
+var http = require('http');
 
-// Monitor post requests from clients
+//Allow CORS
+app_post.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+// Serve the files
 app.use('/', express.static(__dirname));
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
-}));
-app.post('/', function (req, res) {
+app.listen(80);
+
+// Monitor post requests from clients
+app_post.use(bodyParser.json());
+app_post.post('/', function (req, res) {
     'use strict';
     console.log(req.body.time);
     console.log(req.ip);
@@ -20,8 +29,4 @@ app.post('/', function (req, res) {
     var line = '\n' + req.body.time.toString() + '|' + req.ip.toString() + '|' + JSON.stringify(req.body.userChoices);
     fs.appendFile('/home/andy/wy-data/data.csv', line, function (err) {console.log(err)});
 });
-
-app.listen(3000, function () {
-    'use strict';
-    console.log('listening');
-});
+http.createServer(app_post).listen(3000);
