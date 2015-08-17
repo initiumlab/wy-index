@@ -84,10 +84,118 @@ var masterStyle = {
   padding: '1em'
 };
 
-var ResultPage = React.createClass({
+var ResultCard = React.createClass({
   render: function() {
-    return (null);
-    //TODO
+
+    var cardStyle = {
+    };
+    cardStyle = extend(masterStyle, cardStyle);
+
+    var commentTitleStyle = {
+      fontSize: "1.4em"
+    };
+
+    var indexMessageStyle = {
+      fontSize: "1.4em"
+    };
+
+    var imageBoxLeftStyle = {
+      textAlign: "center",
+      display: "inline-block",
+      float: "left",
+      width: "10%",
+    };
+
+    var imageBoxRightStyle = {
+      textAlign: "center",
+      display: "inline-block",
+      float: "right",
+      width: "10%",
+    };
+
+    var indexBoxStyle = {
+      display: "inline-block",
+      width: "100%",
+      position: "relative"
+    };
+
+    var dataBoxStyle = {
+      width: "70%",
+      position: "absolute",
+      bottom: 0,
+      margin: "0 15%",
+      textAlign: "center",
+      fontSize: "3em"
+    };
+
+    var gradientStyle = {
+      width: "100%",
+      marginBottom: "-0.2em",
+    };
+
+    var scorePercentage = this.props.totalScore * 0.97;
+
+    var sliderBoxStyle = {
+      textAlign: "left",
+      fontSize: "0.5em",
+      marginLeft: scorePercentage + "%",
+      position: "absolute",
+    };
+
+    return (
+      <div id="ResultCard"
+           style={cardStyle}>
+
+        <div id="indexMessage"
+             style={indexMessageStyle}>
+          {this.props.indexMessage}
+        </div>
+
+        <div id="indexBox"
+             style={indexBoxStyle}>
+
+          <div id="imageBoxLeft"
+               style={imageBoxLeftStyle}>
+            <img src="./images/resultpage_image_left.png" />
+            <div id="indexLowerBound">
+              0
+            </div>
+          </div>
+
+          <div id="imageBoxRight"
+               style={imageBoxRightStyle}>
+            <img src="./images/resultpage_image_right.png" />
+            <div id="indexUpperBound">
+              100
+            </div>
+          </div>
+
+          <div id="dataBox"
+               style={dataBoxStyle}>
+            {this.props.totalScore}
+            <div id="sliderBox"
+                 style={sliderBoxStyle}>
+              ▼
+            </div>
+            <img src="./images/gradient.png"
+                 id="gradient"
+                 style={gradientStyle}/>
+          </div>
+
+        </div>
+
+        <div id="commentBox">
+          <div id="commentTitle"
+               style={commentTitleStyle}>
+            {this.props.commentTitle.replace('[totalScore]', this.props.totalScore.toString())}
+          </div>
+          <div id="commentContent">
+            {this.props.commentContent.replace('[totalScore]', this.props.totalScore.toString())}
+          </div>
+        </div>
+
+      </div>
+    );
   }
 });
 
@@ -102,21 +210,27 @@ var QuestionCard = React.createClass({
 
   handleOptionClick: function(event) {
 
-    console.log(this.state.questionSerial);
-    console.log(this.props.survey.length);
+    console.log(event.target.getAttribute("data-score"));
 
     if (this.state.questionSerial < this.props.survey.length - 1) {
       this.setState({
         questionSerial: this.state.questionSerial + 1,
-        totalScore: this.state.totalScore + event.target.getAttribute("data-score")
+        totalScore: this.state.totalScore + parseInt(event.target.getAttribute("data-score"), 10)
       });
+
     } else {
       // Last Question
       this.setState({
         totalScore: this.state.totalScore + event.target.getAttribute("data-score")
       });
+
+      var normalisedScore = Math.round(this.state.totalScore / wyQuiz.maximumScore * 100);
+
       React.render(
-          <ResultPage totalScore={this.state.totalScore} />,
+          <ResultCard totalScore={normalisedScore}
+                      commentTitle={wyQuiz.commentTitle}
+                      commentContent={wyQuiz.commentContent}
+                      indexMessage={wyQuiz.indexMessage} />,
           document.getElementById('content')
       )
     }
@@ -136,7 +250,7 @@ var QuestionCard = React.createClass({
     var listItemStyle = {
       marginTop: "0.5em",
       cursor: "pointer",
-      maxWidth: "5em",
+      maxWidth: "10em",
     };
 
     var imageStyle = {
@@ -193,7 +307,7 @@ var QuestionCard = React.createClass({
     // Generate list items
     var optionListItems = question.options.map(function(option){
       return (
-          <li key={option.optionText}
+          <li key={option.optionScore + option.optionText}
               onClick={this.handleOptionClick}
               data-score={option.optionScore}
               style={listItemStyle}
@@ -273,13 +387,13 @@ var CoverCard = React.createClass({
     };
 
     var titleStyle = {
-      fontSize: '5em',
+      fontSize: '3em',
       paddingTop: '1em'
     };
 
     var startTextStyle = {
       fontColor: 'inherit',
-      fontSize: '2em',
+      fontSize: '1.5em',
       textDecoration: 'none',
       marginLeft: '15em',
       cursor: 'pointer',
@@ -306,12 +420,16 @@ var CoverCard = React.createClass({
   document.title = wyQuiz.title;
   wyQuiz.setNewUUID();
   React.render(
-      //<CoverCard
-      //    title={wyQuiz.title}
-      //    startText={wyQuiz.startText}
-      //    coverImagePath={wyQuiz.coverImgRelativePath}
-      ///>,
-      <QuestionCard survey={wyQuiz.survey} questionSerial={0} />,
+      <CoverCard
+          title={wyQuiz.title}
+          startText={wyQuiz.startText}
+          coverImagePath={wyQuiz.coverImgRelativePath}
+      />,
+      //<QuestionCard survey={wyQuiz.survey} questionSerial={0} />,
+      //<ResultCard indexMessage={wyQuiz.indexMessage}
+      //            commentTitle={wyQuiz.commentTitle}
+      //            commentContent={wyQuiz.commentContent}
+      //            totalScore={29} />,
       document.getElementById('content')
   );
 

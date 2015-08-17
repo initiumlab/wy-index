@@ -7,7 +7,12 @@ var wyQuiz = {
   coverImgRelativePath: './images/cover.png',
   lang: 'zh-hant',
 
-  totalScore: 0
+  indexMessage: '你的廢青指數',
+  commentTitle: '你的廢青指數是[totalScore]分（滿分100）！',
+  commentContent: '本測試參考普遍社會對廢青的言論及看法，在心理學專家鄧藝的協助下，製作了這份「廢青」指數問卷。你的得分表示，你與一名「被社會認定是廢青」有[totalScore]%的相似度。不過，無論最終你的分數是高是低，意在證明，每一個你的體內，都隱藏一些「廢青」的元素。究竟誰是廢青？值得你我一起探討。',
+
+  totalScore: 0,
+  maximumScore: 45 //NOTE: Should manually update this number
 };
 
 wyQuiz.survey = [
