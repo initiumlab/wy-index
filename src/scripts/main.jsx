@@ -74,9 +74,9 @@ function extend(object1, object2) {
 
 var themeColor = "#2AB6C9";
 
-var masterStyle = {
+var baseStyle = {
   backgroundColor: themeColor,
-  fontFamily: 'sans-serif',
+  fontFamily: '"Hiragino Sans GB", sans-serif',
   maxWidth: '1125px',
   margin: '0 auto',
   color: '#EEE',
@@ -84,12 +84,24 @@ var masterStyle = {
   padding: '1em'
 };
 
+// Style for narrow screens
+
+var width = window.innerWidth
+  || document.documentElement.clientWidth
+  || document.body.clientWidth;
+
+if (width < 1125) {
+  baseStyle.fontSize = '2.5em';
+}
+
+// Narrow screen style ends
+
 var ResultCard = React.createClass({
   render: function() {
 
     var cardStyle = {
     };
-    cardStyle = extend(masterStyle, cardStyle);
+    cardStyle = extend(baseStyle, cardStyle);
 
     var commentTitleStyle = {
       fontSize: "1.4em"
@@ -104,6 +116,10 @@ var ResultCard = React.createClass({
       display: "inline-block",
       float: "left",
       width: "10%",
+    };
+
+    var humanFigureImageStyle = {
+      width: '100%'
     };
 
     var imageBoxRightStyle = {
@@ -130,16 +146,17 @@ var ResultCard = React.createClass({
 
     var gradientStyle = {
       width: "100%",
-      marginBottom: "-0.2em",
+      marginBottom: "-0.3em",
     };
 
-    var scorePercentage = this.props.totalScore * 0.97;
+    var scoreMarginPercentage = this.props.totalScore * 0.97;
 
     var sliderBoxStyle = {
       textAlign: "left",
       fontSize: "0.5em",
-      marginLeft: scorePercentage + "%",
+      marginLeft: scoreMarginPercentage + "%",
       position: "absolute",
+      bottom: "30px"
     };
 
     return (
@@ -156,7 +173,7 @@ var ResultCard = React.createClass({
 
           <div id="imageBoxLeft"
                style={imageBoxLeftStyle}>
-            <img src="./images/resultpage_image_left.png" />
+            <img src="./images/resultpage_image_left.png" style={humanFigureImageStyle} />
             <div id="indexLowerBound">
               0
             </div>
@@ -164,7 +181,7 @@ var ResultCard = React.createClass({
 
           <div id="imageBoxRight"
                style={imageBoxRightStyle}>
-            <img src="./images/resultpage_image_right.png" />
+            <img src="./images/resultpage_image_right.png" style={humanFigureImageStyle}/>
             <div id="indexUpperBound">
               100
             </div>
@@ -210,7 +227,7 @@ var QuestionCard = React.createClass({
 
   handleOptionClick: function(event) {
 
-    console.log(event.target.getAttribute("data-score"));
+    post(this.state.questionSerial.toString(), event.target.innerText);
 
     if (this.state.questionSerial < this.props.survey.length - 1) {
       this.setState({
@@ -219,12 +236,17 @@ var QuestionCard = React.createClass({
       });
 
     } else {
+
       // Last Question
+
       this.setState({
         totalScore: this.state.totalScore + event.target.getAttribute("data-score")
       });
 
       var normalisedScore = Math.round(this.state.totalScore / wyQuiz.maximumScore * 100);
+
+      post('rawScore', this.state.totalScore.toString());
+      post('normalisedScore', normalisedScore.toString());
 
       React.render(
           <ResultCard totalScore={normalisedScore}
@@ -245,25 +267,25 @@ var QuestionCard = React.createClass({
     var cardStyle = {
       position: "relative"
     };
-    cardStyle = extend(masterStyle, cardStyle);
+    cardStyle = extend(baseStyle, cardStyle);
 
     var listItemStyle = {
       marginTop: "0.5em",
       cursor: "pointer",
-      maxWidth: "10em",
+      maxWidth: "10em"
     };
 
     var imageStyle = {
       position: "absolute",
       bottom: 0,
       right: 0,
-      maxHeight: "8em",
+      maxHeight: "8em"
     };
 
     var progressBarBoxStyle = {
       position: "relative",
       overflow: "hidden",
-      whiteSpace: "nowrap",
+      whiteSpace: "nowrap"
     };
 
     var progressBarStyle = {
@@ -271,7 +293,7 @@ var QuestionCard = React.createClass({
       height: "1em",
       display: 'inline-block',
       width: '95%',
-      textAlign: "center",
+      textAlign: "center"
     };
 
     var questionTextStyle = {
@@ -288,14 +310,14 @@ var QuestionCard = React.createClass({
       position: "relative",
       height: "1em",
       backgroundColor: "#EEE",
-      width: (5 + (95 - 5) * progressPercentage).toString() + '%',
+      width: (5 + (95 - 5) * progressPercentage).toString() + '%'
     };
 
     var finishedQuestionCountStyle = {
       float: "right",
       paddingBottom: "0.1em",
       paddingRight: "0.2em",
-      color: themeColor,
+      color: themeColor
     };
 
     var totalQuestionCountStyle = {
@@ -364,6 +386,7 @@ var QuestionCard = React.createClass({
 var CoverCard = React.createClass({
 
   handleStartClick: function(event) {
+    post('start', 'Start button clicked');
     React.render(
         <QuestionCard
             survey={wyQuiz.survey}
@@ -376,7 +399,7 @@ var CoverCard = React.createClass({
   render: function() {
     var cardStyle = {
     };
-    cardStyle = extend(masterStyle, cardStyle);
+    cardStyle = extend(baseStyle, cardStyle);
 
     var textBoxStyle = {
     };
