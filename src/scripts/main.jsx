@@ -315,14 +315,17 @@ var QuestionCard = React.createClass({
 
     var finishedQuestionCountStyle = {
       float: "right",
-      paddingBottom: "0.1em",
+      position: "relative",
+      bottom: "0.2em",
       paddingRight: "0.2em",
       color: themeColor
     };
 
     var totalQuestionCountStyle = {
       float: "right",
-      width: "1.5em"
+      width: "1.5em",
+      position: "relative",
+      bottom: "0.2em",
     };
     // === End of Styles ===
 
