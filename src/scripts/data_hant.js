@@ -19,7 +19,7 @@ wyQuiz.survey = [
   {
     "serial": 0,
     "questionText": "政府派錢六千元，我會立即search廉價機票，計劃去旅行",
-    "imagePath": "images/optionImage1.png",
+    "imagePath": "images/001.png",
     "options": [
       {"optionScore": 3, "optionText":"很同意"},
       {"optionScore": 2, "optionText":"較同意"},
@@ -30,6 +30,7 @@ wyQuiz.survey = [
   {
     "serial": 1,
     "questionText": "就算老闆加錢要求我OT，我都寧願選擇去friend的party",
+    "imagePath": "images/008.png",
     "options": [
       {"optionScore": 3, "optionText":"很同意"},
       {"optionScore": 2, "optionText":"較同意"},
@@ -40,7 +41,6 @@ wyQuiz.survey = [
   {
     "serial": 2,
     "questionText": "每當要shopping，我就會立即想到上網淘寶",
-    "imagePath": "images/optionImage1.png",
     "options": [
       {"optionScore": 3, "optionText":"很同意"},
       {"optionScore": 2, "optionText":"較同意"},
@@ -51,6 +51,7 @@ wyQuiz.survey = [
   {
     "serial": 3,
     "questionText": "我覺得我的性別是",
+    "imagePath": "images/006.png",
     "options": [
       {"optionScore": 0, "optionText":"男"},
       {"optionScore": 0, "optionText":"女"},
@@ -71,6 +72,7 @@ wyQuiz.survey = [
   {
     "serial": 5,
     "questionText": "如果有得揀，我會想做李嘉誠，而不是王維基",
+    "imagePath": "images/002.png",
     "options": [
       {"optionScore": 0, "optionText":"很同意"},
       {"optionScore": 1, "optionText":"較同意"},
@@ -151,6 +153,7 @@ wyQuiz.survey = [
   {
     "serial": 13,
     "questionText": "要爭取社會公義，我覺得上街遊行、集會，比辯論更直接有效",
+    "imagePath": "images/003.png",
     "options": [
       {"optionScore": 3, "optionText":"很同意"},
       {"optionScore": 2, "optionText":"較同意"},
@@ -161,6 +164,7 @@ wyQuiz.survey = [
   {
     "serial": 14,
     "questionText": "比起報紙、雜誌，我更喜歡從網絡獲取資訊",
+    "imagePath": "images/004.png",
     "options": [
       {"optionScore": 3, "optionText":"很同意"},
       {"optionScore": 2, "optionText":"較同意"},
@@ -179,6 +183,7 @@ wyQuiz.survey = [
   {
     "serial": 16,
     "questionText": "情到濃時，我覺得在公眾地方進行性行為是可以接受的",
+    "imagePath": "images/007.png",
     "options": [
       {"optionScore": 3, "optionText":"很同意"},
       {"optionScore": 2, "optionText":"較同意"},
@@ -199,6 +204,7 @@ wyQuiz.survey = [
   {
     "serial": 18,
     "questionText": "除了男女關係，我認為男男或女女，都不是正常戀愛",
+    "imagePath": "images/005.png",
     "options": [
       {"optionScore": 0, "optionText":"很同意"},
       {"optionScore": 1, "optionText":"較同意"},
