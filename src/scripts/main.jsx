@@ -91,7 +91,7 @@ var width = window.innerWidth
   || document.body.clientWidth;
 
 if (width < 1125) {
-  baseStyle.fontSize = '2.5em';
+  baseStyle.fontSize = '2.2em';
 }
 
 // Narrow screen style ends
@@ -292,7 +292,7 @@ var QuestionCard = React.createClass({
       border: "2px solid white",
       height: "1em",
       display: 'inline-block',
-      width: '95%',
+      width: '92%',
       textAlign: "center"
     };
 
@@ -317,7 +317,7 @@ var QuestionCard = React.createClass({
       float: "right",
       position: "relative",
       bottom: "0.2em",
-      paddingRight: "0.2em",
+      paddingRight: "0.1em",
       color: themeColor
     };
 
@@ -421,7 +421,7 @@ var CoverCard = React.createClass({
       fontColor: 'inherit',
       fontSize: '1.5em',
       textDecoration: 'none',
-      marginLeft: '15em',
+      marginLeft: '12em',
       cursor: 'pointer',
     };
 
