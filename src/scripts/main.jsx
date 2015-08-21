@@ -192,22 +192,18 @@ var ResultCard = React.createClass({
 
     var btnSocialShare = {
       display: "block",
-      fontSize: "1em",
+      fontSize: "0.8em",
       width: '10em',
-      fontAlign: "left",
+      textAlign: "left",
+      marginTop: "0.5em",
+      verticalAlign: "bottom",
     };
 
-    var btnFacebookShareStyle = {
-    };
-    btnFacebookShareStyle = extend(btnSocialShare, btnFacebookShareStyle);
+    var btnFacebookShareStyle = extend(btnSocialShare, {});
 
-    var btnWeiboShareStyle = {
-    };
-    btnWeiboShareStyle = extend(btnSocialShare, btnWeiboShareStyle);
+    var btnWeiboShareStyle = extend(btnSocialShare, {});
 
-    var btnTwitterShareStyle = {
-    };
-    btnTwitterShareStyle = extend(btnSocialShare, btnTwitterShareStyle);
+    var btnTwitterShareStyle = extend(btnSocialShare, {});
 
     return (
       <div id="ResultCard"
@@ -266,18 +262,21 @@ var ResultCard = React.createClass({
                   id="btnFacebookShare"
                   style={btnFacebookShareStyle}
                   onClick={this.shareToFacebook}>
+            <img src="./images/facebook_icon.png" alt="" />
             分享到Facebook
           </button>
           <button className="btnShare"
                   id="btnWeiboShare"
                   style={btnWeiboShareStyle}
                   onClick={this.shareToWeibo}>
+            <img src="./images/weibo_icon.png" alt="" />
             分享到新浪微博
           </button>
           <button className="btnShare"
                   id="btnTwitterShare"
                   style={btnTwitterShareStyle}
                   onClick={this.shareToTwitter}>
+            <img src="./images/twitter_icon.png" alt="" />
             分享到Twitter
           </button>
         </div>
