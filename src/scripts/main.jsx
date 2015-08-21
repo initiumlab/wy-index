@@ -190,20 +190,24 @@ var ResultCard = React.createClass({
       bottom: "30px"
     };
 
-    var btnSocialShare = {
+    var socialShareAnchorStyle = {
       display: "block",
       fontSize: "0.8em",
+      fontWeight: "bolder",
       width: '10em',
       textAlign: "left",
       marginTop: "0.5em",
       verticalAlign: "bottom",
+      padding: "0",
+      cursor: "pointer",
+      border: "4px solid #EEE"
     };
 
-    var btnFacebookShareStyle = extend(btnSocialShare, {});
+    var facebookShareAnchorStyle = extend(socialShareAnchorStyle, {});
 
-    var btnWeiboShareStyle = extend(btnSocialShare, {});
+    var weiboShareAnchorStyle = extend(socialShareAnchorStyle, {});
 
-    var btnTwitterShareStyle = extend(btnSocialShare, {});
+    var twitterShareAnchorStyle = extend(socialShareAnchorStyle, {});
 
     return (
       <div id="ResultCard"
@@ -258,27 +262,27 @@ var ResultCard = React.createClass({
         </div>
 
         <div id="socialShare">
-          <button className="btnShare"
+          <a className="btnShare"
                   id="btnFacebookShare"
-                  style={btnFacebookShareStyle}
+                  style={facebookShareAnchorStyle}
                   onClick={this.shareToFacebook}>
             <img src="./images/facebook_icon.png" alt="" />
             分享到Facebook
-          </button>
-          <button className="btnShare"
+          </a>
+          <a className="btnShare"
                   id="btnWeiboShare"
-                  style={btnWeiboShareStyle}
+                  style={weiboShareAnchorStyle}
                   onClick={this.shareToWeibo}>
             <img src="./images/weibo_icon.png" alt="" />
             分享到新浪微博
-          </button>
-          <button className="btnShare"
+          </a>
+          <a className="btnShare"
                   id="btnTwitterShare"
-                  style={btnTwitterShareStyle}
+                  style={twitterShareAnchorStyle}
                   onClick={this.shareToTwitter}>
             <img src="./images/twitter_icon.png" alt="" />
             分享到Twitter
-          </button>
+          </a>
         </div>
 
       </div>
