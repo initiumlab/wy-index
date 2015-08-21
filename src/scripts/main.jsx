@@ -97,6 +97,37 @@ if (width < 1125) {
 // Narrow screen style ends
 
 var ResultCard = React.createClass({
+
+  shareToWeibo: function () {
+    var title = encodeURIComponent(wyQuiz.shareRecommendation),
+        url = encodeURIComponent(wyQuiz.url);
+    window.open('http://v.t.sina.com.cn/share/share.php?title='+title+'&url='+url);
+    post('share', 'weibo');
+  },
+
+  shareToFacebook: function () {
+    var description = encodeURIComponent(wyQuiz.shareRecommendation),
+        url = encodeURIComponent(wyQuiz.url),
+        title = encodeURIComponent(wyQuiz.title);
+
+    window.open('https://www.facebook.com/dialog/feed?app_id=871017952984021' +
+      '&link=' + url +
+      '&name=' + title +
+      '&description=' + description +
+      '&redirect_uri=' + url
+    );
+    post('share', 'facebook');
+  },
+
+  shareToTwitter: function() {
+    var title=encodeURIComponent(wyQuiz.shareRecommendation),
+        url=encodeURIComponent(wyQuiz.url);
+    window.open('https://twitter.com/share?url=' +
+      url +
+      '&text=' +
+      title);
+  },
+
   render: function() {
 
     var cardStyle = {
@@ -159,6 +190,25 @@ var ResultCard = React.createClass({
       bottom: "30px"
     };
 
+    var btnSocialShare = {
+      display: "block",
+      fontSize: "1em",
+      width: '10em',
+      fontAlign: "left",
+    };
+
+    var btnFacebookShareStyle = {
+    };
+    btnFacebookShareStyle = extend(btnSocialShare, btnFacebookShareStyle);
+
+    var btnWeiboShareStyle = {
+    };
+    btnWeiboShareStyle = extend(btnSocialShare, btnWeiboShareStyle);
+
+    var btnTwitterShareStyle = {
+    };
+    btnTwitterShareStyle = extend(btnSocialShare, btnTwitterShareStyle);
+
     return (
       <div id="ResultCard"
            style={cardStyle}>
@@ -209,6 +259,27 @@ var ResultCard = React.createClass({
           <div id="commentContent">
             {this.props.commentContent.replace('[totalScore]', this.props.totalScore.toString())}
           </div>
+        </div>
+
+        <div id="socialShare">
+          <button className="btnShare"
+                  id="btnFacebookShare"
+                  style={btnFacebookShareStyle}
+                  onClick={this.shareToFacebook}>
+            分享到Facebook
+          </button>
+          <button className="btnShare"
+                  id="btnWeiboShare"
+                  style={btnWeiboShareStyle}
+                  onClick={this.shareToWeibo}>
+            分享到新浪微博
+          </button>
+          <button className="btnShare"
+                  id="btnTwitterShare"
+                  style={btnTwitterShareStyle}
+                  onClick={this.shareToTwitter}>
+            分享到Twitter
+          </button>
         </div>
 
       </div>
@@ -322,9 +393,9 @@ var QuestionCard = React.createClass({
     };
 
     var totalQuestionCountStyle = {
-      float: "right",
       width: "1.5em",
-      position: "relative",
+      position: "absolute",
+      rigth: "0",
       bottom: "0.2em",
     };
     // === End of Styles ===
@@ -446,16 +517,16 @@ var CoverCard = React.createClass({
   document.title = wyQuiz.title;
   wyQuiz.setNewUUID();
   React.render(
-      <CoverCard
-          title={wyQuiz.title}
-          startText={wyQuiz.startText}
-          coverImagePath={wyQuiz.coverImgRelativePath}
-      />,
+      //<CoverCard
+      //    title={wyQuiz.title}
+      //    startText={wyQuiz.startText}
+      //    coverImagePath={wyQuiz.coverImgRelativePath}
+      ///>,
       //<QuestionCard survey={wyQuiz.survey} questionSerial={0} />,
-      //<ResultCard indexMessage={wyQuiz.indexMessage}
-      //            commentTitle={wyQuiz.commentTitle}
-      //            commentContent={wyQuiz.commentContent}
-      //            totalScore={29} />,
+      <ResultCard indexMessage={wyQuiz.indexMessage}
+                  commentTitle={wyQuiz.commentTitle}
+                  commentContent={wyQuiz.commentContent}
+                  totalScore={29} />,
       document.getElementById('content')
   );
 
