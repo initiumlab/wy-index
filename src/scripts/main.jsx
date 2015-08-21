@@ -520,16 +520,16 @@ var CoverCard = React.createClass({
   document.title = wyQuiz.title;
   wyQuiz.setNewUUID();
   React.render(
-      //<CoverCard
-      //    title={wyQuiz.title}
-      //    startText={wyQuiz.startText}
-      //    coverImagePath={wyQuiz.coverImgRelativePath}
-      ///>,
+      <CoverCard
+          title={wyQuiz.title}
+          startText={wyQuiz.startText}
+          coverImagePath={wyQuiz.coverImgRelativePath}
+      />,
       //<QuestionCard survey={wyQuiz.survey} questionSerial={0} />,
-      <ResultCard indexMessage={wyQuiz.indexMessage}
-                  commentTitle={wyQuiz.commentTitle}
-                  commentContent={wyQuiz.commentContent}
-                  totalScore={29} />,
+      //<ResultCard indexMessage={wyQuiz.indexMessage}
+      //            commentTitle={wyQuiz.commentTitle}
+      //            commentContent={wyQuiz.commentContent}
+      //            totalScore={29} />,
       document.getElementById('content')
   );
 
