@@ -216,7 +216,7 @@ wyQuiz.survey = [
   },
   {
     "serial": 19,
-    "questionText": "有人說過我是廢青",
+    "questionText": "我覺得自己就是廢青",
     "options": [
       {"optionScore": 0, "optionText":"是"},
       {"optionScore": 0, "optionText":"否"},
