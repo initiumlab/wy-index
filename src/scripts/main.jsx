@@ -108,10 +108,12 @@ var ResultCard = React.createClass({
   shareToFacebook: function () {
     var description = encodeURIComponent(wyQuiz.shareRecommendation),
         url = encodeURIComponent(wyQuiz.url),
-        title = encodeURIComponent(wyQuiz.title);
+        title = encodeURIComponent(wyQuiz.title),
+        imageURL = encodeURIComponent(wyQuiz.url + './images/cover-share.png');
 
     window.open('https://www.facebook.com/dialog/feed?app_id=871017952984021' +
       '&link=' + url +
+      '&picture=' + imageURL +
       '&name=' + title +
       '&description=' + description +
       '&redirect_uri=' + url
@@ -534,4 +536,21 @@ var CoverCard = React.createClass({
   );
 
   post('render', wyQuiz.lang+'-rendered');
+
+  // Add og tags
+  // Moved to static index.html
+  //var head = document.head;
+  //var meta, info;
+  //var ogInfo = {
+  //  'og:title': wyQuiz.title,
+  //  'og:type' : 'article',
+  //  'og:image': wyQuiz.url + './images/cover-share.png'
+  //};
+  //
+  //for (attr in ogInfo) if (ogInfo.hasOwnProperty(attr)) {
+  //  meta = document.createElement('meta');
+  //  meta.setAttribute('property', attr);
+  //  meta.setAttribute('content', ogInfo[attr]);
+  //  head.appendChild(meta);
+  //};
 }(window, window.document, window.React, window.wyQuiz));
