@@ -189,7 +189,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-targethtml');
 
   grunt.registerTask('build',  ['clean:dev', 'inline:dev', 'browserify:dev', 'copy', 'concat:dev']);
-  grunt.registerTask('serve',  ['connect', 'watch']);
+  grunt.registerTask('serve',  ['build', 'connect', 'watch']);
   grunt.registerTask('deploy', ['clean:dist', 'inline:dist', 'browserify:dist', 'copy', 'concat:dist', 'uglify',
                                 'targethtml:prod', 'htmlmin',
                                 'gh-pages', 'rsync']);
