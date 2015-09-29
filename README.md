@@ -21,7 +21,7 @@ Then, in the root project directory, run this to install all JavaScript packages
 npm install
 ```
 
-### Virtual Environemnt for Development
+### Virtual Environment for Development
 Install the virtualisation suite:
 
 - VirtualBox
