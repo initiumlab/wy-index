@@ -21,16 +21,15 @@ Then, in the root project directory, run this to install all JavaScript packages
 npm install
 ```
 
-### Virtual Environemnt for Development
+### Virtual Environment for Development
 Install the virtualisation suite:
 
 - VirtualBox
 - Vagrant
 
-Download image and launch virtual machine:
+Launch virtual machine:
 
 ```
-vagrant box add ubuntu/trusty64
 vagrant up
 ```
 
