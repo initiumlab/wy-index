@@ -35,8 +35,7 @@
     "grunt-inline": "^0.3.6",
     "grunt-processhtml": "^0.3.8",
     "grunt-rsync": "^0.6.2",
-    "grunt-targethtml": "^0.2.6",
-    "opencc": "^1.0.3"
+    "grunt-targethtml": "^0.2.6"
   },
   "dependencies": {
     "grunt-env": "^0.4.4",
