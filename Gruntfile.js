@@ -190,7 +190,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build',  ['clean:dev', 'inline:dev', 'browserify:dev', 'copy', 'concat:dev']);
   grunt.registerTask('serve',  ['build', 'connect', 'watch']);
-  grunt.registerTask('deploy', ['clean:dist', 'inline:dist', 'browserify:dist', 'copy', 'concat:dist', 'uglify',
-                                'targethtml:prod', 'htmlmin',
-                                'gh-pages', 'rsync']);
+  grunt.registerTask('deploy:staging', ['clean:dist', 'inline:dist', 'browserify:dist', 'copy', 'concat:dist', 'uglify',
+                                'targethtml:prod', 'htmlmin', 'rsync']);
+  grunt.registerTask('deploy:prod', ['clean:dist', 'inline:dist', 'browserify:dist', 'copy', 'concat:dist', 'uglify',
+    'targethtml:prod', 'htmlmin', 'gh-pages']);
 };

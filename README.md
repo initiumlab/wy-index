@@ -4,9 +4,8 @@
 This is a self-test of how closely you resemble the "wasted youth", or 廢青, by answering 20 questions.
 Initiated by the Hong Kong News group of Initium Media, implemented by Initium Lab engineer Andy Shu.
 
-## Dependencies
 
-### 
+## Install on local machine
 
 You need to install [NodeJS](https://nodejs.org/).
 
@@ -21,7 +20,27 @@ Then, in the root project directory, run this to install all JavaScript packages
 npm install
 ```
 
-### Virtual Environment for Development
+### Deploy
+
+#### Serve on local server
+
+    grunt serve
+
+Then visit <http://localhost:9000/>.
+
+#### Deploy to showcase
+
+    grunt build
+    grunt deploy:staging
+    
+#### Deploy to production
+
+    grunt build
+    grunt deploy:prod
+
+
+
+## Virtual Environment for Development
 Install the virtualisation suite:
 
 - VirtualBox
